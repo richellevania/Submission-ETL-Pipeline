@@ -1,0 +1,133 @@
+Dokumentasi Proyek Akhir: Implementasi Pipeline ETL Sederhana
+
+Selamat datang di dokumentasi proyek implementasi pipeline ETL (Extract, Transform, Load) ini. Dokumen ini menyediakan instruksi lengkap untuk mengeksekusi dan memverifikasi kode yang telah dikembangkan.
+
+----------------------------------
+
+Metode #1: Eksekusi Menggunakan Lingkungan Virtual (.venv) - Pendekatan Utama
+
+Penggunaan lingkungan virtual sangat disarankan untuk memastikan isolasi dependensi proyek dan menjaga kebersihan instalasi Python global Anda.
+
+Kebutuhan Awal:
+* Sistem Anda harus memiliki Python versi 3.8 atau yang lebih baru terinstal.
+* Pastikan pip (manajer paket Python) tersedia dan berfungsi.
+
+Langkah-langkah Operasional:
+
+1. Inisialisasi Lingkungan & Instalasi Pustaka:
+   * Navigasikan ke direktori root proyek (submission-pemda) melalui terminal atau command prompt.
+   * Buat lingkungan virtual baru (lewati jika sudah ada), aktifkan, dan pasang semua pustaka yang diperlukan menggunakan file requirements.txt.
+
+     # 1. Buat lingkungan virtual (hanya jika belum ada)
+     python -m venv .venv
+     atau
+     python3 -m venv .venv
+
+     # 2. Aktifkan lingkungan virtual
+     #    - Windows (Command Prompt):
+     #      .venv\Scripts\activate
+     #    - Windows (Git Bash) / macOS / Linux:
+     #      source .venv/bin/activate
+
+     # 3. Pasang dependensi proyek
+     pip install -r requirements.txt
+
+     # 4. Pastikan Terinstall
+        pip install pytest-mock
+
+        pip install pytest pytest-cov
+
+2. Menjalankan Proses Inti ETL:
+   * Eksekusi skrip main.py untuk memulai alur kerja ETL secara keseluruhan (ekstraksi data, transformasi sesuai aturan, dan pemuatan ke target).
+
+     # Pastikan lingkungan virtual (.venv) aktif dan Anda berada di direktori root proyek
+     python main.py
+
+3. Verifikasi Fungsionalitas (Unit Testing):
+   * Jalankan rangkaian pengujian unit untuk memastikan setiap fungsi atau komponen bekerja sesuai harapan secara individual.
+
+     # Pastikan lingkungan virtual (.venv) aktif dan Anda berada di direktori root proyek
+     python -m pytest tests
+
+   * Hasil yang diharapkan adalah semua tes berhasil (pass).
+
+4. Analisis Cakupan Kode Uji (Test Coverage):
+   * Ukur seberapa baik unit test Anda mencakup kode dalam direktori utils/ untuk mengevaluasi kualitas pengujian.
+
+     # Pastikan lingkungan virtual (.venv) aktif dan Anda berada di direktori root proyek
+     pytest --cov=utils tests/
+
+   * Terminal akan menampilkan ringkasan persentase cakupan per file. Untuk visualisasi detail (baris mana yang teruji/tidak), hasilkan laporan HTML dengan perintah `coverage html`, lalu buka file `htmlcov/index.html` di browser Anda.
+
+----------------------------------
+
+Metode #2: Eksekusi Langsung di Lingkungan Python Sistem
+
+Alternatif ini dapat digunakan jika Anda memilih untuk tidak membuat lingkungan virtual terpisah. Namun, perlu diingat potensi konflik dependensi dengan pustaka lain yang mungkin sudah terinstal secara global.
+
+Kebutuhan Awal:
+* Sistem Anda harus memiliki Python versi 3.8 atau yang lebih baru terinstal.
+* Pastikan pip (manajer paket Python) tersedia dan berfungsi.
+
+Langkah-langkah Operasional:
+
+1. Instalasi Pustaka Global:
+   * Buka terminal atau command prompt di direktori root proyek (submission-pemda).
+   * Instal dependensi langsung ke lingkungan Python utama Anda.
+
+     # Pastikan Anda berada di direktori root proyek
+     python -m pip install -r requirements.txt
+     # atau gunakan 'python' jika itu perintah default di sistem Anda
+
+2. Menjalankan Proses Inti ETL:
+   * Eksekusi skrip main.py untuk memulai alur kerja ETL.
+
+     # Pastikan Anda berada di direktori root proyek
+     python main.py
+     # atau gunakan 'python3'
+
+3. Verifikasi Fungsionalitas (Unit Testing):
+   * Jalankan pengujian unit menggunakan pytest.
+
+     # Pastikan Anda berada di direktori root proyek
+     python3 -m pytest tests
+     # atau gunakan 'python -m pytest tests'
+
+   * Pastikan semua tes berhasil.
+
+4. Analisis Cakupan Kode Uji (Test Coverage):
+   * Jalankan analisis cakupan kode.
+
+     # Pastikan Anda berada di direktori root proyek
+     pytest --cov=.
+
+   * Periksa ringkasan di terminal atau hasilkan laporan HTML dengan perintah `coverage html`, lalu buka file `htmlcov/index.html` di browser Anda.
+
+----------------------------------
+
+Pemeriksaan Hasil Akhir yang Telah Dihasilkan (Opsional)
+
+Sebagai catatan, pipeline ETL (main.py) ini telah dieksekusi sepenuhnya sebelum penyerahan proyek. Proses ini mencakup ekstraksi 1000 item data dari sumber, penerapan transformasi yang diperlukan, dan penyimpanan hasil ke semua target yang telah dikonfigurasi.
+
+Anda dapat langsung memeriksa output di lokasi berikut untuk menghemat waktu eksekusi ulang:
+
+* File CSV: Berkas products.csv di direktori utama proyek (submission-pemda).
+* Google Sheets: Dapat dilihat melalui tautan yang disediakan di bawah.
+* Database PostgreSQL: Data tersedia di tabel target sesuai konfigurasi dalam file .env.
+
+Pemeriksaan output ini bisa menjadi alternatif jika Anda tidak ingin menjalankan ulang main.py.
+
+----------------------------------
+
+Informasi Pendukung
+
+* Tautan Google Sheets:
+    https://docs.google.com/spreadsheets/d/1z74LeWaeeR4P5dpFFDuv3a50MhwcmQTZuSI8iw_OKx8/edit?gid=0#gid=0
+
+* Berkas Konfigurasi Kredensial:
+  - Google Sheets API: sigma-lane-458309-r0-70da989f986c.json
+  - Koneksi Database PostgreSQL: .env
+
+----------------------------------
+
+Semoga panduan ini membantu dalam menjalankan dan mengevaluasi proyek ETL ini!
